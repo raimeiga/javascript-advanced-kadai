@@ -76,6 +76,7 @@ $(function () {
     inputCheck();
   });
 
+
   $('#prefecture').click(function () {
     inputCheck();
   });
