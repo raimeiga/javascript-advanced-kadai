@@ -77,7 +77,7 @@ $(function () {
   $('#agree').click(function () {
     inputCheck();
   });
-
+  
    // お問い合わせフォームの入力チェック
    function inputCheck() {
        
