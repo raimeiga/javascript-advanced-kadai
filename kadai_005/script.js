@@ -9,7 +9,7 @@ $(function () {
        marginLeft: 20,
      }, 100);
    });
-
+   
    $('.button-more').on('mouseout', function () {
     $(this).animate({
       opacity: 1.0,
