@@ -35,28 +35,6 @@ $(function () {
     // 入力チェックをした結果、エラーがあるかないか判定
     let result = inputCheck();
 
-     // エラー判定とメッセージを取得
-     let error = result.error;
-     let message = result.message;
-
-     // エラーが無かったらフォームを送信する
-     if (error == false) {
-      $.ajax({
-        url: 'https://api.staticforms.xyz/submit',
-        type: 'POST',
-        dataType: 'json',
-        data: $('#form').serialize(),
-        success: function (result) {
-          alert('お問い合わせを送信しました。')
-        },
-        error: function (xhr, resp, text) {
-          alert('お問い合わせを送信できませんでした。')
-        }
-      })
-    } else {
-      // エラーメッセージを表示する
-      alert(message);
-    }
   });  
 
   // フォーカスが外れたとき（blur）にフォームの入力チェックをする
@@ -77,24 +55,23 @@ $(function () {
   });
   $('#prefecture').click(function () {
     inputCheck();
-  });  
+  });    
   $('#agree').click(function () {
     inputCheck();
   });
 
    // お問い合わせフォームの入力チェック
    function inputCheck() {
-       
-         // エラーのチェック結果
+     // エラーのチェック結果
      let result;
  
-     // エラーメッセージのテキスト　'';は空文字＝あとで容れるため。
+     // エラーメッセージのテキスト
      let message = '';
  
      // エラーがなければfalse、エラーがあればtrue
      let error = false;
 
-     // お名前のチェック
+      // お名前のチェック
      if ($('#name').val() == '') {
        // エラーあり
        $('#name').css('background-color', '#f79999');
@@ -150,12 +127,12 @@ $(function () {
       $('#tel').css('background-color', '#fafafa');
     }
 
+
     // 都道府県のセレクトボックスのチェック
     if ($('#prefecture').val()=='') {
      error = true;
      message += '都道府県を選択してください。\n';
     }
-
      // 個人情報のチェックボックスのチェック
      if ($('#agree').prop('checked') == false) {
       error = true;
@@ -163,21 +140,24 @@ $(function () {
     }
 
     // エラーの有無で送信ボタンを切り替え
-    if (error == true) {
-      $('#submit').attr('src', 'images/button-submit.png');
-    } else {
-      $('#submit').attr('src', 'images/button-submit-blue.png');
-    }
+     if (error == true) {
+       $('#submit').attr('src', 'images/button-submit.png');
+     } else {
+       $('#submit').attr('src', 'images/button-submit-blue.png');
+     }
 
-    // オブジェクトでエラー判定とメッセージを返す
-    result = {
-      error: error,
-      message: message
-    }
 
-    // 戻り値としてエラーがあるかどうかを返す
-    return result;
-   }   
+     // オブジェクトでエラー判定とメッセージを返す
+     result = {
+       error: error,
+       message: message
+     }
+     console.log(result);
+ 
+     // 戻り値としてエラーがあるかどうかを返す
+     return result;
 
- });
+   }
+  
+  });
 
