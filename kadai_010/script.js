@@ -10,6 +10,7 @@ $(function () {
      }, 100);
    });
 
+   
    $('.button-more').on('mouseout', function () {
     $(this).animate({
       opacity: 1.0,
